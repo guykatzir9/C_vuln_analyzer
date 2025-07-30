@@ -137,5 +137,6 @@ llm_gk_analyzer/
 ## Future Improvements (Optional Extras)
 
 - [ ] JSON output format  
-- [ ] Recursive directory scanning    
-- [ ] Docker image for easy deployment
+- [ ] Recursive directory scanning
+- [ ] Saving output to a file instead of printing to Stdout  
+
