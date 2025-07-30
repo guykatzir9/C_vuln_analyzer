@@ -61,8 +61,55 @@ or if the file is on the test_files folder in the root of the project directory:
 
 > note:its optional to add --fix for fix suggestions (e.g "python cli.py test_files\code.c --fix").
 ---
+### 5. Run with Docker (optional)
 
-## Project Structure
+If you prefer to avoid setting up a Python environment, you can use Docker.
+
+> ⚠️ The Phi-4 Mini model file is not included in the Docker image to keep it lightweight.  
+> Download it manually and place it under the `models/` folder as described in step 2.
+
+### Relative path examples (file inside project folder):
+
+    ### PowerShell (Windows):
+    ```powershell
+    docker run --rm `
+    -v "${PWD}:/app" `
+    -v "${PWD}/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" `
+    c_vuln_analyzer_clean /app/test_files/small.c.
+
+    ### CMD (Windows):
+    docker run --rm ^
+    -v "%cd%:/app" ^
+    -v "%cd%\models\phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" ^
+    c_vuln_analyzer_clean /app/test_files/small.c
+
+    ### Linux/macOS:
+    docker run --rm \
+    -v "$PWD:/app" \
+    -v "$PWD/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" \
+    c_vuln_analyzer_clean /app/test_files/small.c
+
+### Absolute path examples (any file on your system)
+
+    ### PowerShell (Windows):
+    docker run --rm `
+    -v "C:\\Users\\Guy\\Desktop\\my_files:/input" `
+    -v "${PWD}/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" `
+    c_vuln_analyzer_clean /input/example.c
+
+    ### CMD (Windows):
+    docker run --rm ^
+    -v "C:\\Users\\Guy\\Desktop\\my_files:/input" ^
+    -v "%cd%\\models\\phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" ^
+    c_vuln_analyzer_clean /input/example.c
+
+    ### Linux/macOS:
+    docker run --rm \
+    -v "/home/guy/my_files:/input" \
+    -v "$PWD/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" \
+    c_vuln_analyzer_clean /input/example.c
+
+### Project Structure
 
 ```
 llm_gk_analyzer/

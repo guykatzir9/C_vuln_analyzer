@@ -126,3 +126,7 @@ Allowing GPU Acceleration: llama-cpp supports GPU execution via CUDA or Metal, w
 
 Applying Larger Models: Upgrading to a higher-parameter model (e.g., full Phi-4 or a fine-tuned variant) could improve precision and language understanding for complex patterns.
 
+Optimize model loading to improve performance for multiple file analyses.
+
+
+

@@ -2,9 +2,10 @@
 # Loads the Phi-4 Mini model once and provides an interface for analyzing C/C++ code
 
 from llama_cpp import Llama
+import os
 
 # Path to the model file (relative to project root).
-MODEL_PATH = "models\phi-4-mini-instruct-q4_k_m.gguf"
+MODEL_PATH = os.path.join("models", "phi-4-mini-instruct-q4_k_m.gguf")
 
 # Load the model once when this file is imported.
 print("Loading LLM model...")
