@@ -63,10 +63,27 @@ or if the file is on the test_files folder in the root of the project directory:
 ---
 ### 5. Run with Docker (optional)
 
-If you prefer to avoid setting up a Python environment, you can use Docker.
+If you prefer to avoid setting up a Python environment, you can use Docker to run the tool.
 
 > ⚠️ The Phi-4 Mini model file is not included in the Docker image to keep it lightweight.  
 > Download it manually and place it under the `models/` folder as described in step 2.
+
+
+You can either:
+
+- Pull the prebuilt image from Docker Hub (recommended):
+
+bash
+Copy
+Edit
+docker pull guykatzir9/llm-vuln-analyzer
+
+ - Or build the image locally using the Dockerfile (for development):
+
+bash
+Copy
+Edit
+docker build -t guykatzir9/llm-vuln-analyzer .
 
 ### Relative path examples (file inside project folder):
 
@@ -75,19 +92,19 @@ If you prefer to avoid setting up a Python environment, you can use Docker.
     docker run --rm `
     -v "${PWD}:/app" `
     -v "${PWD}/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" `
-    c_vuln_analyzer_clean /app/test_files/small.c.
+    guykatzir9/llm-vuln-analyzer /app/test_files/small.c
 
     ### CMD (Windows):
     docker run --rm ^
     -v "%cd%:/app" ^
     -v "%cd%\models\phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" ^
-    c_vuln_analyzer_clean /app/test_files/small.c
+    guykatzir9/llm-vuln-analyzer /app/test_files/small.c
 
     ### Linux/macOS:
     docker run --rm \
     -v "$PWD:/app" \
     -v "$PWD/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" \
-    c_vuln_analyzer_clean /app/test_files/small.c
+    guykatzir9/llm-vuln-analyzer /app/test_files/small.c
 
 ### Absolute path examples (any file on your system)
 
@@ -95,19 +112,19 @@ If you prefer to avoid setting up a Python environment, you can use Docker.
     docker run --rm `
     -v "C:\\Users\\Guy\\Desktop\\my_files:/input" `
     -v "${PWD}/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" `
-    c_vuln_analyzer_clean /input/example.c
+    guykatzir9/llm-vuln-analyzer /input/example.c
 
     ### CMD (Windows):
     docker run --rm ^
     -v "C:\\Users\\Guy\\Desktop\\my_files:/input" ^
     -v "%cd%\\models\\phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" ^
-    c_vuln_analyzer_clean /input/example.c
+    guykatzir9/llm-vuln-analyzer /input/example.c
 
     ### Linux/macOS:
     docker run --rm \
     -v "/home/guy/my_files:/input" \
     -v "$PWD/models/phi-4-mini-instruct-q4_k_m.gguf:/app/models/phi-4-mini-instruct-q4_k_m.gguf" \
-    c_vuln_analyzer_clean /input/example.c
+    guykatzir9/llm-vuln-analyzer /input/example.c
 
 ### Project Structure
 
@@ -115,10 +132,12 @@ If you prefer to avoid setting up a Python environment, you can use Docker.
 llm_gk_analyzer/
 ├── analyzer/          # Core logic for analysis and LLM interaction
 ├── models/            # Folder for downloaded .gguf model file
+├── cli.py             # Processes user input and triggers analysis logic
 ├── README.md          # This file
 ├── Report.md          # Documentation of design decisions and process
 ├── requirements.txt   # Python dependencies
 ├── .gitignore
+
 ```
 
 ## Features
