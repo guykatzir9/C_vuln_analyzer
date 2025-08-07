@@ -24,7 +24,7 @@ def build_prompt(code: str, prompt_type: str = "default") -> str:
         "Do not repeat lines. Keep it concise.\n"
         f"{code}\n\n"
         "Now list the issues and fixes:"
-        # "Do not include lines with no problems.\n"
+        
         )
 
     else:
